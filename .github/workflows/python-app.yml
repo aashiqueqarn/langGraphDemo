@@ -30,23 +30,23 @@ jobs:
           pip install --upgrade pip
           pip install "poetry>=2.0.0"
 
-          - name: Install dependencies
-            run: |
-              poetry install --no-interaction
+      - name: Install dependencies
+        run: |
+          poetry install --no-interaction
 
-          - name: Run black & isort (optional but recommended)
-            run: |
-              poetry run black .
-              poetry run isort .
+      - name: Run black & isort (optional but recommended)
+        run: |
+          poetry run black .
+          poetry run isort .
 
-          - name: Run flake8 (syntax & fatal errors)
-            run: |
-              poetry run flake8 . \
-                --exclude=.venv,venv,.git,__pycache__,build,dist \
-                --count \
-                --select=E9,F63,F7,F82 \
-                --show-source \
-                --statistics
+      - name: Run flake8 (syntax & fatal errors)
+        run: |
+          poetry run flake8 . \
+            --exclude=.venv,venv,.git,__pycache__,build,dist \
+            --count \
+            --select=E9,F63,F7,F82 \
+            --show-source \
+            --statistics
 
   # -------------------------------
   # 2. TEST JOB
@@ -67,17 +67,17 @@ jobs:
         run: |
           pip install "poetry>=2.0.0"
 
-          - name: Install dependencies
-            run: |
-              poetry install --no-interaction
+      - name: Install dependencies
+        run: |
+          poetry install --no-interaction
 
-          - name: Run tests if present
-            run: |
-              if ls -1 *test*.py 2>/dev/null | grep -q .; then
-                  poetry run pytest
-              else
-                  echo "No tests found. Skipping pytest."
-              fi
+      - name: Run tests if present
+        run: |
+          if ls -1 *test*.py 2>/dev/null | grep -q .; then
+              poetry run pytest
+          else
+              echo "No tests found. Skipping pytest."
+          fi
 
   # -------------------------------
   # 3. RUN AGENT SCRIPT
@@ -108,10 +108,10 @@ jobs:
         run: |
           pip install "poetry>=2.0.0"
 
-          - name: Install dependencies
-            run: |
-              poetry install --no-interaction
-          
-          - name: Execute main.py
-            run: |
-              poetry run main.py
+      - name: Install dependencies
+        run: |
+          poetry install --no-interaction
+
+      - name: Execute main.py
+        run: |
+          poetry run main.py
