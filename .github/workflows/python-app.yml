@@ -39,6 +39,9 @@ jobs:
           poetry run black .
           poetry run isort .
 
+      - name: Install flake8
+        run: poetry run pip install flake8
+
       - name: Run flake8 (syntax & fatal errors)
         run: |
           poetry run flake8 . \
