@@ -117,4 +117,4 @@ jobs:
 
       - name: Execute main.py
         run: |
-          poetry run main.py
+          poetry run python main.py
